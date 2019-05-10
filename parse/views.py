@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Flat
+
 def index(request):
     flats = Flat.objects.all()
     # get_flats()
