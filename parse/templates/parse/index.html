@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Парсинг Авито</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <style media="screen">
+      body {
+        font-size:.9rem;
+        letter-spacing: -.03em;
+      }
+      .flat {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: baseline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <a class="btn btn-success" href="/parse/parsing">Обновить</a>
+          <table id="example" class="stripe" style="width:100%">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>id_avito</th>
+                <th>Квартира</th>
+                <th>Адрес</th>
+                <th>Стоимость</th>
+                <th>Телефон</th>
+                <th>Text</th>
+                <th>Дата размещения</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for flat in flats %}
+                <tr>
+                  <td>{{ flat.id }}</td>
+                  <td>{{ flat.id_avito }}</td>
+                  <td><a href="{{ flat.url }}">{{ flat.title }}</a></td>
+                  <td>{{ flat.address }}</td>
+                  <td>{{ flat.price }}</td>
+                  <td>{{ flat.tel }}</td>
+                  <td>{{ flat.text}} </td>
+                  <td>{{ flat.date_avito }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="all_data" style="font-size:.7rem;">
+      {{ data }}
+    </div> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          "order": [0, 'desc'],
+          "lengthMenu": [ 25, 50, 75, 100 ],
+          // stateSave: true
+        } );
+      } );
+    </script>
+  </body>
+</html>
